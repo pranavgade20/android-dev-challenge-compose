@@ -18,19 +18,31 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.*
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.ui.theme.shapes
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                Base()
             }
         }
     }
@@ -38,9 +50,71 @@ class MainActivity : AppCompatActivity() {
 
 // Start building your app here!
 @Composable
-fun MyApp() {
+fun Base() {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "MyApp") {
+        composable("MyApp") { MyApp(navController) }
+        composable("details/{id}",) { navBackStackEntry -> openDetails(navController, navBackStackEntry.arguments?.getString("id", "0")) }
+    }
+}
+
+@Composable
+fun MyApp(navController: NavController) {
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        Column (
+            modifier = Modifier.verticalScroll(rememberScrollState())
+                ) {
+            doggos.forEach { d -> listDoggo(data = d, navController = navController) }
+        }
+    }
+}
+
+@Composable
+fun listDoggo(navController: NavController, data: Doggo) {
+    MaterialTheme {
+        val typography = MaterialTheme.typography
+        Column(
+            modifier = Modifier.padding(16.dp)
+                .clickable(onClick = { navController.navigate("details/" + doggos.indexOf(data)) {} })
+        ) {
+            Image(
+                painter = painterResource(id = data.pic),
+                contentDescription = null,
+                modifier = Modifier
+                    .height(250.dp)
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(10.dp)),
+                contentScale = ContentScale.Fit
+            )
+            Spacer(modifier = Modifier.requiredHeight(10.dp))
+            Text(text = data.name + ", " + data.age, style = typography.h6)
+        }
+    }
+}
+
+@Composable
+fun openDetails(navController: NavController, id: String?) {
+    var doggo = doggos[if (id != null) Integer.parseInt(id) else 0]
+
+    MyTheme {
+        MaterialTheme {
+            val typography = MaterialTheme.typography
+            Column(modifier = Modifier.padding(16.dp)) {
+                Image(
+                    painter = painterResource(id = doggo.pic),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(360.dp)
+                        .fillMaxWidth()
+                        .clip(shape = RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Fit
+                )
+                Spacer(modifier = Modifier.requiredHeight(8.dp))
+                Text(text = doggo.name, style = typography.h4, color = Color.White)
+                Text(text = "Age: " + doggo.age.toString(), style = typography.h6, color = Color.White)
+                Text(text = "Breed: " + doggo.breed, style = typography.h6, color = Color.White)
+            }
+        }
     }
 }
 
@@ -48,7 +122,7 @@ fun MyApp() {
 @Composable
 fun LightPreview() {
     MyTheme {
-        MyApp()
+        Base()
     }
 }
 
@@ -56,6 +130,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     MyTheme(darkTheme = true) {
-        MyApp()
+        Base()
     }
 }
