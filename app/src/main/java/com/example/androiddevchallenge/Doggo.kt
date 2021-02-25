@@ -20,12 +20,17 @@ data class Doggo(
     val name: String,
     val age: Int,
     val pic: Int,
-    val breed: String
+    val breed: String,
+    val gender: String
 )
 
 val doggos = arrayOf(
-    Doggo("Bernie", 2, R.drawable.beagle, "Beagle"),
-    Doggo("Charles", 5, R.drawable.chihuahua, "Chihuahua"),
-    Doggo("Sam", 6, R.drawable.japanse_spaniel, "Japanese Spaniel"),
-    Doggo("Jack", 2, R.drawable.silky_terrier, "Silky Terrier")
+    Doggo("Bernie", 2, R.drawable.beagle, "Beagle", "Male"),
+    Doggo("Prof. Woof", 6, R.drawable.old_english_sheepdog, "Old English Sheepdog", "Male"),
+    Doggo("Sandy", 2, R.drawable.silky_terrier, "Silky Terrier", "Female"),
+    Doggo("Mia", 5, R.drawable.golden_retriever, "Golden Retriver", "Female"),
+    Doggo("Charles", 5, R.drawable.chihuahua, "Chihuahua", "Male"),
+    Doggo("Sam", 6, R.drawable.japanse_spaniel, "Japanese Spaniel", "Male"),
+    Doggo("Alex", 2, R.drawable.affenpinscher, "Affenpinscher", "Female"),
+    Doggo("Jack", 3, R.drawable.pomeranian, "Pomeranian", "Male")
 )

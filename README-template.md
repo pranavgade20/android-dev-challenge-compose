@@ -2,17 +2,17 @@
 
 <!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
 <!--- You can find both of these in the url bar when you open your repository in github. -->
-![Workflow result](https://github.com/<OWNER>/<REPOSITORY>/workflows/Check/badge.svg)
+![Workflow result](https://github.com/pranavgade20/android-dev-challenge-compose/workflows/Check/badge.svg)
 
 
 ## :scroll: Description
 <!--- Describe your app in one or two sentences -->
-
+The app displays a list of cute dog/puppy images, with their name and age. To see more details about a particular dog, you can tap the element in the list, and you are shown another screen with other details like breed, gender, etc.
 
 ## :bulb: Motivation and Context
 <!--- Optionally point readers to interesting parts of your submission. -->
 <!--- What are you especially proud of? -->
-
+I'm especially proud of the cute images. I spent hours picking the best images from https://www.kaggle.com/jessicali9530/stanford-dogs-dataset to achieve the maximum cuteness, and I'd say they were hours well spent :P
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->

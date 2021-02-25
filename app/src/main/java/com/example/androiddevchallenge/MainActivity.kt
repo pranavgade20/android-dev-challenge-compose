@@ -122,6 +122,7 @@ fun openDetails(navController: NavController, id: String?) {
                 Spacer(modifier = Modifier.requiredHeight(8.dp))
                 Text(text = doggo.name, style = typography.h4, color = Color.White)
                 Text(text = "Age: " + doggo.age.toString(), style = typography.h6, color = Color.White)
+                Text(text = "Gender: " + doggo.gender, style = typography.h6, color = Color.White)
                 Text(text = "Breed: " + doggo.breed, style = typography.h6, color = Color.White)
             }
         }

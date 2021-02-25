@@ -20,20 +20,26 @@ import junit.framework.TestCase
 class DoggoTest : TestCase() {
 
     fun testTestGetName() {
-        var doggo = Doggo("Bernie", 2, 0, "Beagle")
+        var doggo = Doggo("Bernie", 2, 0, "Beagle", "Male")
 
         assertEquals(doggo.name, "Bernie")
     }
 
     fun testGetAge() {
-        var doggo = Doggo("Bernie", 2, 0, "Beagle")
+        var doggo = Doggo("Bernie", 2, 0, "Beagle", "Male")
 
         assertEquals(doggo.age, 2)
     }
 
     fun testGetBreed() {
-        var doggo = Doggo("Bernie", 2, 0, "Beagle")
+        var doggo = Doggo("Bernie", 2, 0, "Beagle", "Male")
 
         assertEquals(doggo.breed, "Beagle")
+    }
+
+    fun testGetGender() {
+        var doggo = Doggo("Bernie", 2, 0, "Beagle", "Male")
+
+        assertEquals(doggo.gender, "Male")
     }
 }
